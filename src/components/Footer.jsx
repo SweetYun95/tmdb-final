@@ -1,7 +1,11 @@
 import './css/Footer.css'
 
 function Footer() {
-    return (  );
+   return (
+      <footer>
+         <p>TMDB Footer</p>
+      </footer>
+   )
 }
 
-export default Footer;
+export default Footer
