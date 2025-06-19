@@ -1,13 +1,17 @@
 // 검색결과 페이지
 
 import { Main, Wrap } from '../styles/StyledComponents'
+import Menu from '../components/Menu'
+import Footer from '../components/Footer'
 
 function SearchResults() {
-    return (
-       <Wrap>
-          <Main $padding="30px 0">검색결과 페이지</Main>
-       </Wrap>
-    )
+   return (
+      <Wrap>
+         <Menu />
+         <Main $padding="30px 0">검색결과 페이지</Main>
+         <Footer />
+      </Wrap>
+   )
 }
 
-export default SearchResults;
+export default SearchResults
