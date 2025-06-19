@@ -1,10 +1,24 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import Home from './pages/Home'
+import MovieCategory from './pages/MovieCategory'
+import SearchResults from './pages/SearchResults'
+import Detail from './pages/Detail'
+import NotFounnd from './pages/NotFound'
 
 function App() {
    return (
-      <>
-        <h1>tmdb</h1>
-      </>
+      <Routes>
+         <Route path="/" element={<Home />} />
+
+         <Route path="/popular" element={<MovieCategory />} />
+         <Route path="/now_playing" element={<MovieCategory />} />
+         <Route path="/upcoming" element={<MovieCategory />} />
+
+         <Route path="/search" element={<SearchResults />} />
+         <Route path="/detail/:movieId" element={<Detail />} />
+         <Route path="/*" element={<NotFounnd />} />
+      </Routes>
    )
 }
 
