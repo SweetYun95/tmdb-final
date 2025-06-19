@@ -20,8 +20,8 @@ export const getMovies = async (category = 'popular', page = 1) => {
          region: 'KR',
       },
    })
-    
-    return response
+
+   return response
 }
 
 export default tmdbApi

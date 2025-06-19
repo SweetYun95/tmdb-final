@@ -1,8 +1,8 @@
 // 영화상세페이지
 
+import { Main, Wrap } from '../styles/StyledComponents'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
-import { Main, Wrap } from '../styles/StyledComponents'
 
 function Detail() {
    return (

@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThnuk, combineSlices } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getMovies } from '../api/tmdbApi'
 
-export const fetchMovies = createAsyncThnuk('movies/fetchMovies', async ({ category, page }) => {
+export const fetchMovies = createAsyncThunk('movies/fetchMovies', async ({ category, page }) => {
+   // category = 'popular', page = 1
    const response = await getMovies(category, page)
    console.log(response)
-   return response.data.results
+   return response.data.results // 배열데이터
 })
 
 const movieSlice = createSlice({
