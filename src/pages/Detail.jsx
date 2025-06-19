@@ -4,6 +4,10 @@ import { Main, Wrap } from '../styles/StyledComponents'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
 
+// import { useParams } from 'react-router-dom'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { useEffect } from 'react'
+
 function Detail() {
    return (
       <Wrap>
