@@ -1,7 +1,13 @@
-// 영화상세 페이지
+// 영화상세페이지
+
+import { Main, Wrap } from '../styles/StyledComponents'
 
 function Detail() {
-    return (  );
+   return (
+      <Wrap>
+         <Main $padding="30px 0">영화상세페이지</Main>
+      </Wrap>
+   )
 }
 
-export default Detail;
+export default Detail
