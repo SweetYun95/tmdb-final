@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getMovies, getMovieDetails, getMovieCredits } from '../api/tmdbApi'
+import { getMovies, getMovieDetails, getMovieCredits, searchMovie } from '../api/tmdbApi'
 
 // 현재상영 || 개봉예정 || 인기영화 목록
 export const fetchMovies = createAsyncThunk('movies/fetchMovies', async ({ category, page }) => {
@@ -20,12 +20,22 @@ export const fetchMovieCredits = createAsyncThunk('movies/fetchMovieCredits', as
    return response.data //영화의 배우와 스텝 객체 데이터
 })
 
+// 영화 검색 정보
+export const fetchSearcResults = createAsyncThunk(`movies/fetchSearcResults`, async ({ query, page }) => {
+   const response = await searchMovie(query, page)
+   console.log(response)
+   return response.data.results
+})
+
 const movieSlice = createSlice({
    name: 'movies',
+   // fetch함수에서 받아오는 값이 [배열]일 때: 초기 state는 [빈배열]
+   // fetch함수에서 받아오는 값이 {객체}일 때: 초기 state는 null
    initialState: {
       movies: [], // 현재상영 || 개봉예정 || 인기영화 목록
       movieDetails: null, // 영화 상세 정보
       movieCredits: null, // 출연배우 정보
+      SearchResults: [], // 영화 검색 정보
       loading: false, // 로딩여부
       error: null, // 에러메시지
    },
@@ -75,6 +85,27 @@ const movieSlice = createSlice({
             state.movieCredits = action.payload
          })
          .addCase(fetchMovieCredits.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+         })
+         // 영화검색 정보
+         .addCase(fetchSearcResults.pending, (state) => {
+            state.loading = true
+            state.error = null
+         })
+         .addCase(fetchSearcResults.fulfilled, (state, action) => {
+            state.loading = false
+
+            // action.meta.arg에서는 fetch 함수에서 매개변수로 받아온 값을 가져올 수 있음
+            // 페이지가 1페이지 일때는 새로운 state로 업데이트
+            if (action.meta.arg.page === 1) {
+               state.SearchResults = action.payload
+            } else {
+               // 페이지가 2페이지 이상일때는 기존에 새로운 데이터 추가한 state 업데이트
+               state.SearchResults = [...state.SearchResults, ...action.payload] // 기존 영화에 새 영화 추가
+            }
+         })
+         .addCase(fetchSearcResults.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
          })
