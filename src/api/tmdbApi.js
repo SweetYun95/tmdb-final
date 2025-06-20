@@ -24,4 +24,27 @@ export const getMovies = async (category = 'popular', page = 1) => {
    return response
 }
 
+// 영화 상세정보 불러오기
+export const getMovieDetails = async (movieId) => {
+   const response = await tmdbApi.get(`/movie/${movieId}`, {
+      params: {
+         language: 'ko-KR',
+      },
+   })
+
+   return response
+}
+
+// 영화 출연배우 불러옫기
+export const getMovieCredits = async (movieId) => {
+   // https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR
+   const response = await tmdbApi.get(`movie/${movieId}/credits`, {
+      params: {
+         language: 'ko-KR',
+      },
+   })
+
+   return response
+}
+
 export default tmdbApi

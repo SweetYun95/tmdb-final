@@ -1,5 +1,4 @@
 // 검색결과 페이지
-
 import { Main, Wrap } from '../styles/StyledComponents'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'

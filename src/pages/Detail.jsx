@@ -1,18 +1,18 @@
 // 영화상세페이지
-
 import { Main, Wrap } from '../styles/StyledComponents'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
-
-// import { useParams } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { useEffect } from 'react'
+import MovieDetail from '../components/MovieDetail'
+import CreditsSlider from '../components/slider/CreditsSlider'
 
 function Detail() {
    return (
       <Wrap>
          <Menu />
-         <Main $padding="30px 0">영화상세페이지</Main>
+         <Main $padding="30px 0">
+            <MovieDetail />
+            <CreditsSlider />
+         </Main>
          <Footer />
       </Wrap>
    )

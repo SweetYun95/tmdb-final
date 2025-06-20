@@ -2,6 +2,7 @@
 import { Wrap, Main, Loading } from '../styles/StyledComponents'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
+
 import MovieCard from '../components/MovieCard'
 import Button from '@mui/material/Button'
 
@@ -32,7 +33,7 @@ function MovieCategory({ category }) {
    }
 
    // 페이지 번호가 1번일때만 loading 실행 -> 더보기 버튼 클릭시 로딩 컴포넌트가 렌더링되면 위로 올라오는 현상 방지
-   if (loading && page[category]===1) {
+   if (loading && page[category] === 1) {
       return (
          <Wrap>
             <Menu />
