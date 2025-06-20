@@ -7,14 +7,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { fetchSearcResults } from '../features/movieSlice'
 import MovieCard from '../components/MovieCard'
+import { useSearchParams } from 'react-router-dom'
 
 function SearchResults() {
+   const [searchParams] = useSearchParams()
+   const query = searchParams.get('query')
+   console.log(query)
+
    const [page, setPage] = useState(1) // 페이지 번호
    const dispatch = useDispatch()
    const { SearchResults, loading, error } = useSelector((state) => state.movies)
 
    useEffect(() => {
-      dispatch(fetchSearcResults({ query: '안녕', page }))
+      dispatch(fetchSearcResults({ query, page }))
    }, [dispatch, page])
 
    // 더보기 버튼 클릭시 실행

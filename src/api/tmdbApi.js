@@ -55,7 +55,7 @@ export const searchMovie = async (query, page = 1) => {
          page,
          language: 'ko-KR',
          region: 'KR',
-         include_adult: true,
+         include_adult: false,
       },
    })
 
