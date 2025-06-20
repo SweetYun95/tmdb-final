@@ -21,9 +21,8 @@ export const fetchMovieCredits = createAsyncThunk('movies/fetchMovieCredits', as
 })
 
 // 영화 검색 정보
-export const fetchSearcResults = createAsyncThunk(`movies/fetchSearcResults`, async ({ query, page }) => {
+export const fetchSearchResults = createAsyncThunk(`movies/fetchSearchResults`, async ({ query, page }) => {
    const response = await searchMovie(query, page)
-   console.log(response)
    return response.data.results
 })
 
@@ -35,7 +34,7 @@ const movieSlice = createSlice({
       movies: [], // 현재상영 || 개봉예정 || 인기영화 목록
       movieDetails: null, // 영화 상세 정보
       movieCredits: null, // 출연배우 정보
-      SearchResults: [], // 영화 검색 정보
+      searchResults: [], // 영화 검색 정보
       loading: false, // 로딩여부
       error: null, // 에러메시지
    },
@@ -89,23 +88,23 @@ const movieSlice = createSlice({
             state.error = action.error.message
          })
          // 영화검색 정보
-         .addCase(fetchSearcResults.pending, (state) => {
+         .addCase(fetchSearchResults.pending, (state) => {
             state.loading = true
             state.error = null
          })
-         .addCase(fetchSearcResults.fulfilled, (state, action) => {
+         .addCase(fetchSearchResults.fulfilled, (state, action) => {
             state.loading = false
 
             // action.meta.arg에서는 fetch 함수에서 매개변수로 받아온 값을 가져올 수 있음
             // 페이지가 1페이지 일때는 새로운 state로 업데이트
             if (action.meta.arg.page === 1) {
-               state.SearchResults = action.payload
+               state.searchResults = action.payload
             } else {
                // 페이지가 2페이지 이상일때는 기존에 새로운 데이터 추가한 state 업데이트
-               state.SearchResults = [...state.SearchResults, ...action.payload] // 기존 영화에 새 영화 추가
+               state.searchResults = [...state.searchResults, ...action.payload] // 기존 영화에 새 영화 추가
             }
          })
-         .addCase(fetchSearcResults.rejected, (state, action) => {
+         .addCase(fetchSearchResults.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
          })

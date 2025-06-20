@@ -17,7 +17,7 @@ export const Input = styled.input`
    outline: white;
    border-radius: 5px;
    height: ${(props) => props.$height || '15px'};
-   font-size: ${(props => props.$fontSize || '1rem')};
+   font-size: ${(props) => props.$fontSize || '1rem'};
 `
 
 export const Button = styled.button`
